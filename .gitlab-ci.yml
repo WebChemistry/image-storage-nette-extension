@@ -1,0 +1,51 @@
+image: warengo/php-test:latest
+
+stages:
+    - build
+    - test
+
+variables:
+    COMPOSER_MEMORY_LIMIT: -1
+
+## Stage - build
+composer-cache:
+    stage: build
+    cache:
+        key: $CI_COMMIT_REF_SLUG
+        paths:
+            - vendor/
+            - .tools/
+    script:
+        - composer install --no-interaction --no-suggest --no-progress --prefer-dist
+        - if [ ! -d ".tools/php-parallel-lint" ]; then composer create-project --no-interaction --no-progress --prefer-dist jakub-onderka/php-parallel-lint .tools/php-parallel-lint ~1.0.0; fi
+
+## Stage - test
+.test-template: &test-template
+    stage: test
+    cache:
+        key: $CI_COMMIT_REF_SLUG
+        policy: pull
+        paths:
+            - vendor/
+    before_script:
+        - composer install --no-interaction --no-suggest --no-progress --prefer-dist
+
+tests:
+    <<: *test-template
+    script:
+        - composer run-script tests
+
+qa:
+    <<: *test-template
+    script:
+        - composer run-script cs
+
+phpstan:
+    <<: *test-template
+    script:
+        - composer run-script phpstan
+
+parallel-lint:
+    <<: *test-template
+    script:
+        - php .tools/php-parallel-lint/parallel-lint.php -e php -j $(nproc) src tests

@@ -1,0 +1,44 @@
+{
+    "name": "webchemistry/image-storage-nette-extension",
+    "description": "",
+    "license": "proprietary",
+    "type": "library",
+    "require": {
+        "php": ">=7.4",
+        "webchemistry/image-storage": ">= 0.11.13 < 1.0.0",
+        "webchemistry/image-storage-nette-bridge": ">= 0.11.13 < 1.0.0",
+        "nette/di": "^3.0.0"
+    },
+    "require-dev": {
+        "codeception/codeception": "^4.1",
+        "codeception/module-asserts": "^1.1",
+        "phpstan/phpstan": "^0.12.11",
+        "phpstan/extension-installer": "^1.0",
+        "phpstan/phpstan-deprecation-rules": "^0.12.2",
+        "warengo/qa": "2.0.1",
+        "codeception/module-phpbrowser": "^1.0.0",
+        "webchemistry/image-storage-imagine-filters": "^0.11.0",
+        "spatie/temporary-directory": "^1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "WebChemistry\\ImageStorage\\NetteExtension\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "WebChemistry\\ImageStorage\\NetteExtension\\Testing\\": "tests/src/"
+        }
+    },
+    "scripts": {
+        "check": [
+            "@cs",
+            "@phpstan",
+            "@tests"
+        ],
+        "tests": "vendor/bin/codecept run",
+        "phpstan": "vendor/bin/phpstan analyse -l 8 -c phpstan.neon src",
+        "cs": "vendor/bin/codesniffer",
+        "cs-fix": "vendor/bin/codefixer"
+    }
+}

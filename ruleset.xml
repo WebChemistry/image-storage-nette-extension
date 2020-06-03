@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<ruleset name="WebChemistry-ImageStorage">
+
+	<rule ref="./vendor/warengo/qa/ruleset.xml">
+	</rule>
+
+	<exclude-pattern>tests/unit/_tmp</exclude-pattern>
+	<exclude-pattern>src/Tracy/assets/panel.phtml</exclude-pattern>
+</ruleset>

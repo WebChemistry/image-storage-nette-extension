@@ -5,9 +5,7 @@
     "type": "library",
     "require": {
         "php": ">=7.4",
-        "webchemistry/image-storage": ">= 0.11.13 < 1.0.0",
-        "webchemistry/image-storage-nette-bridge": ">= 0.11.13 < 1.0.0",
-        "nette/di": "^3.0.0"
+        "webchemistry/image-storage": ">= 0.11.14 < 1.0.0"
     },
     "require-dev": {
         "codeception/codeception": "^4.1",
@@ -18,7 +16,14 @@
         "warengo/qa": "2.0.1",
         "codeception/module-phpbrowser": "^1.0.0",
         "webchemistry/image-storage-imagine-filters": "^0.11.0",
-        "spatie/temporary-directory": "^1.2"
+        "spatie/temporary-directory": "^1.2",
+        "tracy/tracy": "^2.7",
+        "nette/forms": "^3.0",
+        "latte/latte": "^2.8",
+        "nette/di": "^3.0.0",
+        "nette/application": "^3.0",
+        "doctrine/annotations": "^1.10",
+        "doctrine/dbal": "^2.10"
     },
     "autoload": {
         "psr-4": {

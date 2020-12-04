@@ -39,16 +39,14 @@ final class ImageMacro extends MacroSet
 
 	public function attrMacro(MacroNode $node, PhpWriter $writer): string
 	{
-		assert($node->htmlNode !== null);
-
-		$attr = $node->htmlNode->name === 'img' ? ' src=' : ' href=';
+		$attr = $node->htmlNode->name === 'img' ? '" src="' : '" href="';
 		if (!$node->modifiers && ($pos = strpos($node->args, '|')) !== false) {
 			$node->modifiers = substr($node->args, $pos);
 			$node->setArgs(substr($node->args, 0, $pos));
 		}
 
 		return $writer->write(
-			'echo %word . "\""; %raw echo "\""',
+			'echo %raw . "\""; %raw echo "\""',
 			$attr,
 			$this->beginMacro($node, $writer)
 		);
@@ -61,7 +59,6 @@ final class ImageMacro extends MacroSet
 			if ($filter !== null) {
 				throw new CompileException('Cannot use two or more filters.');
 			}
-
 			$filter = $matches[1];
 
 			return '';

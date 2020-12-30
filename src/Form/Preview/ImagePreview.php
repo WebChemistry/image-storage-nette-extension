@@ -75,6 +75,11 @@ class ImagePreview implements ImagePreviewInterface
 		return $this;
 	}
 
+	public function hasImage(ImageUploadControl $input): bool
+	{
+		return $input->getValue()->getDefault() || $this->placeholderLink;
+	}
+
 	public function getHtml(ImageUploadControl $input): ?Html
 	{
 		$value = $input->getValue();

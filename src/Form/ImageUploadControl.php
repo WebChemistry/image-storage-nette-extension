@@ -197,6 +197,15 @@ final class ImageUploadControl extends UploadControl
 		return $this->preview->getHtml($this);
 	}
 
+	public function hasPreviewImage(): bool
+	{
+		if (!$this->preview) {
+			return false;
+		}
+
+		return $this->preview->hasImage($this);
+	}
+
 	/**
 	 * @phpstan-return Html<Html|string>
 	 */
